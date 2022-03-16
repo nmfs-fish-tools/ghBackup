@@ -1,11 +1,11 @@
 Package: ghBackup
-Title: What the Package Does (One Line, Title Case)
+Title: An R package that backs up your GitHub repositories
 Version: 0.0.0.9000
 Authors@R: 
     person("Bai", "Li", "bai.li@noaa.gov", role = c("aut", "cre"))
     person("Giselle", "Schmitz", "giselle.schmitz@noaa.gov", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
-License: MIT + file LICENSE
+License:  GPL-3 + file LICENSE
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
