@@ -1,12 +1,17 @@
-# This R script check size of each tool directory
+# This R script checks size of each tool directory
 library(xlsx)
+#how to create warning note repo download required to check size, can use library or require?
 
 # dir_size: main function to check size of a directory
 dir_size <- function(path, recursive = TRUE) {
-  stopifnot(is.character(path))
+  stopifnot(is.character(path)) 
+#I don't know how to add a warning to this syntax (ie. if class(x) != or == classtype) stop("warning message")
   files <- list.files(path, full.names = T, recursive = T)
   if (length(files)==0) {
     size_files <- file.size(path)
+# Error message
+    stop("no file found")
+   
   } else {
     vect_size <- sapply(files, function(x) file.size(x))
     size_files <- sum(vect_size)
