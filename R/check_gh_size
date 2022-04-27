@@ -11,7 +11,6 @@ dir_size <- function(path, recursive = TRUE) {
     size_files <- file.size(path)
 # Error message
     stop("no file found")
-   
 
   } else {
     vect_size <- sapply(files, function(x) file.size(x))
