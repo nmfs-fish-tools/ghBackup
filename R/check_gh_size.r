@@ -1,8 +1,10 @@
+#' Check size of a directory
+#' @export
 # dir_size: main function to check size of a directory
 dir_size <- function(path, recursive = TRUE) {
 
   # error message class
-  if (class(x) != "character") stop("class is not character")
+  if (class(path) != "character") stop("class of the path is not character")
   files <- list.files(path, full.names = T, recursive = T)
   
   if (length(files)==0) {
