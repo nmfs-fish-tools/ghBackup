@@ -1,17 +1,15 @@
 # Check size of a directory
 #
 # @description
-# The function uses identified path to check the size of given directory. It returns the total size of files in the directory.
-# @importFrom (specified path)
+# The function uses identified path to check the size of given directory. It returns the total size of files in the directory
 #
 # @param path The full path to directory to be sized
-# @param full.names (needed? nested in function)
+# @param recursive Operating on a directory and its contents, including the contents of any subdirectories
 #
 # @return Sum of files in directory
 # @examples
 # dir_size(
 #   path= "C:\Users\gizelle.schmitz\Desktop", recursive= TRUE) (?)
-#
 #
 # dir_size: main function to check size of a directory
 dir_size <- function(path, recursive = TRUE) {
