@@ -1,10 +1,23 @@
-# dir_size: main function to check size of a directory
-dir_size <- function(path, recursive = TRUE) {
+#' Check size of a directory
+#'
+#' @description
+#' The function uses identified path to check the size of given directory. It returns the total size of files in the directory
+#'
+#' @param path The full path to directory to be sized
+#'
+#' @return Sum of size of files in directory
+#' @export
+#' @examples
+#' \dontrun{
+#' dir_size(path = "C:/ghBackup/R")
+#' }
+#'
+dir_size <- function(path) {
 
   # error message class
-  if (class(x) != "character") stop("class is not character")
+  if (class(path) != "character") stop("class of the path is not character")
   files <- list.files(path, full.names = T, recursive = T)
-  
+
   if (length(files)==0) {
     size_files <- file.size(path)
 # Error message
@@ -12,7 +25,10 @@ dir_size <- function(path, recursive = TRUE) {
 
   } else {
     vect_size <- sapply(files, function(x) file.size(x))
-    size_files <- sum(vect_size)
+    size_files <- sum(vect_size)/10**6
+    names(size_files) <- paste0(path, ": Total Size (MB)")
+
+    if (size_files > 1000) warning("The size of the directory exceeds the recommended size: 1000 MB!")
   }
   #return output
   return(size_files)
