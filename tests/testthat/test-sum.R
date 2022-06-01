@@ -13,3 +13,7 @@ test_that("sum does not work with non numeric values", {
     a <- c("a", "b", "c")
     testthat::expect_error(ghBackup::sum(a))
 })
+
+test_that("directory size is equal to sum", {
+  testthat::expect_equal(object = dir_size(path=”example_file”), expected = 0.3, tolerance = 0.1)
+})
