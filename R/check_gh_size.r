@@ -25,10 +25,12 @@ dir_size <- function(path) {
 
   } else {
     vect_size <- sapply(files, function(x) file.size(x))
-    size_files <- sum(vect_size)/10**6
-    names(size_files) <- paste0(path, ": Total Size (MB)")
+    size_files <- data.frame(
+      Total_Size_MB = sum(vect_size)/10**6,
+      path=path
+    )
 
-    if (size_files > 1000) warning("The size of the directory exceeds the recommended size: 1000 MB!")
+    if (size_files$Total_Size_MB > 1000) warning("The size of the directory exceeds the recommended size: 1000 MB!")
   }
   #return output
   return(size_files)

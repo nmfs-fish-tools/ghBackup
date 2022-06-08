@@ -2,7 +2,6 @@
 
 export(back_up_gh_orgs)
 export(dir_size)
-export(sum)
 importFrom(rjson,fromJSON)
 importFrom(utils,download.file)
 importFrom(zip,zip)
