@@ -7,6 +7,12 @@
     <loc>/LICENSE-text.html</loc>
   </url>
   <url>
+    <loc>/articles/check_gh_size.html</loc>
+  </url>
+  <url>
+    <loc>/articles/index.html</loc>
+  </url>
+  <url>
     <loc>/authors.html</loc>
   </url>
   <url>
@@ -16,9 +22,9 @@
     <loc>/reference/back_up_gh_orgs.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>/reference/dir_size.html</loc>
   </url>
   <url>
-    <loc>/reference/sum.html</loc>
+    <loc>/reference/index.html</loc>
   </url>
 </urlset>
