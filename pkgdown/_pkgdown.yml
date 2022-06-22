@@ -30,3 +30,6 @@ navbar:
     articles:
       text: Vignettes
       icon: fas fa-file-contract fa-lg
+      menu:
+      - text: Check GH size
+        href: articles/check_gh_size.html
