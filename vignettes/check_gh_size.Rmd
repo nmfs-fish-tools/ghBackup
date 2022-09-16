@@ -1,0 +1,20 @@
+---
+title: "Check GH size"
+author: "Giselle Schmitz"
+date: "6/15/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Overview
+
+This package checks github repo size as a means of avoiding errors or oversized repos. The package will flag repos over a standard size. 
+
+## Installation
+
+## Using pkg
+
+## Output
