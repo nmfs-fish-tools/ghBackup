@@ -4,8 +4,7 @@
 #' The function uses gh_token to access GitHub API URL to download organization
 #' repositories. It returns all backup materials in a folder on users'
 #' local machine.
-#' @importFrom utils download.file
-#' @importFrom zip zip
+#' @importFrom utils download.file zip
 #' @importFrom rjson fromJSON
 #'
 #' @param gh_token Token number from GitHub website.
@@ -23,15 +22,21 @@
 #'   backup_path = "C:/Users/ghbackup/",
 #'   orgs_name = c("nmfs-fish-tools", "nmfs-general-modeling-tools")
 #' )
+#'
+#' back_up_gh_orgs(
+#'   gh_token = gh::gh_token(),
+#'   backup_path = "C:/Users/ghbackup/",
+#'   orgs_name = c("nmfs-fish-tools", "nmfs-general-modeling-tools")
+#' )
 #' }
-back_up_gh_orgs <- function(gh_token, backup_path, orgs_name=NULL) {
+back_up_gh_orgs <- function(gh_token, backup_path, orgs_name = NULL) {
   if (is.null(gh_token)) {
-    stop("Please provide GitHub token. gitcreds::gutcreds_set() is a nice tool to add new GitHub credentials or replacing existing ones in R. Please see details from gitcreds website: https://github.com/r-lib/gitcreds")
+    stop("Please provide GitHub token. gitcreds::gitcreds_set() is a nice tool to add new GitHub credentials or replacing existing ones in R. Please see details from gitcreds website: https://github.com/r-lib/gitcreds")
   }
 
   header_info <- paste("token", gh_token)
 
-  if(!file.exists(backup_path)) {
+  if (!file.exists(backup_path)) {
     stop(paste(backup_path, "does not exist!"))
   }
   # Delete all files in the backup folder
@@ -152,6 +157,12 @@ back_up_gh_orgs <- function(gh_token, backup_path, orgs_name=NULL) {
     }
   }
 
+  # Create zip archives
+  zip_path <- file.path(dirname(backup_path), "ghBackup.zip")
+  if (file.exists(zip_path)) {
+    # Delete the zip archives
+    unlink(file.path(zip_path), recursive = T, force = T)
+  }
 
-  zip::zip(zipfile = file.path(dirname(backup_path), "ghBackup.zip"), files = backup_path)
+  utils::zip(zipfile = file.path(dirname(backup_path), "ghBackup.zip"), files = backup_path)
 }

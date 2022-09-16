@@ -30,5 +30,11 @@ back_up_gh_orgs(
   backup_path = "C:/Users/ghbackup/",
   orgs_name = c("nmfs-fish-tools", "nmfs-general-modeling-tools")
 )
+
+back_up_gh_orgs(
+  gh_token = gh::gh_token(),
+  backup_path = "C:/Users/ghbackup/",
+  orgs_name = c("nmfs-fish-tools", "nmfs-general-modeling-tools")
+)
 }
 }
