@@ -3,9 +3,8 @@ navbar:
     left:
     - home
     - reference
-    - github
+    - articles
     - issue
-    - article
 
   components:
     home:
@@ -31,5 +30,7 @@ navbar:
       text: Vignettes
       icon: fas fa-file-contract fa-lg
       menu:
+      - text: Back up GitHub repositories
+        href: articles/back-up-github-repositories.html
       - text: Check GH size
         href: articles/check_gh_size.html

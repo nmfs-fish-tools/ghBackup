@@ -1,0 +1,101 @@
+---
+title: "Back up GitHub repositories"
+author: "Bai Li"
+date: "9/26/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Installation
+
+This R package helps back up GitHub repositories from an organization using R. To install the package from GitHub:
+
+```R
+remotes::install_github("Bai-Li-NOAA/ghBackup")
+```
+
+You can read the help file with
+
+```R
+?ghBackup::back_up_gh_orgs
+```
+
+The `back_up_gh_orgs()` function requires a GitHub token, a destination directory, and organization name of the repositories. It then uses the token to clone repositories from the GitHub organization and save the files in the destination directory. The run will download clones of all public and private repositories the token can access. 
+
+## Configuration
+
+### Create a token
+
+A new personal GitHub token can be created from the GitHub settings -> Developer settings -> Personal access tokens tab. More instructions can be found on the GitHub ["creating a personal access token"](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) website.
+
+Once you have a token, you can use it with the `gh_token` argument in the `back_up_gh_orgs()` function. There are two options to set up `gh_token`. 
+
+- Option 1: simply provide token in an R script and do not share the token with others. For example, `gh_token = "abcdefghijklmnopqrstuvwxyz01234567890123"`
+
+- Option 2 (**Recommended**): Use R package `gitcreds` to manage GitHub credentials without printing out the token in an R script. `gitcreds::gitcreds_set()` adds Git credentials in the credential stores and `gh::gh_token()` can be used to return the local user's token. Please see [gitcreds website](https://github.com/r-lib/gitcreds) and [gh website](https://gh.r-lib.org/reference/gh_token.html) for more details. The token will not be shared when sharing the R script. 
+
+
+### Back up repositories
+To back up all repositories from, for example, `nmfs-fish-tools` and `nmfs-general-modeling-tools` to `C:/Users/ghbackup/` using `gh::gh_token()`, you can use the following R code in an R script:
+
+```R
+back_up_gh_orgs(
+ gh_token = gh::gh_token(),
+ backup_path = "C:/Users/ghbackup/",
+ orgs_name = c("nmfs-fish-tools", "nmfs-general-modeling-tools")
+)
+```
+
+Clones of all repositories will be saved in the `C:/Users/ghbackup/` directory and a zip archives of clones of all repositories will be created under parent directory `C:/Users/`.
+
+### Upload the zip file to a Google Drive folder
+
+Thanks @k-doering-NOAA for providing the solution. This approach uses an auto auth setting so no interaction is needed. See gargle's ["Non-interactive auth"](https://gargle.r-lib.org/articles/non-interactive-auth.html) vignette for more details:
+
+```r
+options(gargle_oauth_email = "*@noaa.gov")
+
+zip_name <- "ghBackup.zip"
+zip_path <- file.path(dirname(backup_path), zip_name)
+googledrive::drive_put(
+  media = zip_path,
+  path = googledrive::as_id("https://drive.google.com/drive/folders/1vju2qQ0dPh49Ay7VGaWv6CvGqMZsZKPc"),
+  name = zip_name
+)
+```
+
+The full R script example can be found here: [inst/extdata/examples/example_back_up_gh.R](https://github.com/Bai-Li-NOAA/ghBackup/blob/feat-check-repo-size/inst/extdata/examples/example_back_up_gh.R).
+
+## Schedule the run 
+
+You can schedule the R script/workflow on Windows using the Windows task scheduler. To add a task in an R script, you need to install [`taskscheduleR`](https://cran.r-project.org/web/packages/taskscheduleR/vignettes/taskscheduleR.html) package and run the example code below: 
+
+```r
+install.packages("taskscheduleR")
+library(taskscheduleR)
+
+# R script with tasks
+task_script <- system.file(
+  "extdata", "example_back_up_gh.R",
+  package = "ghBackup"
+)
+
+# Run every 5 mins, starting from within 60 seconds
+taskscheduleR::taskscheduler_create(
+  taskname = "ghBackup_5min",
+  rscript = task_script ,
+  schedule = "MINUTE",
+  startdate = format(Sys.Date(), "%m/%d/%Y"),
+  starttime = format(Sys.time() + 60, "%H:%M"),
+  modifier = 5
+)
+```
+
+The full R script example can be found here: [inst/extdata/examples/example_task_schedule.R](https://github.com/Bai-Li-NOAA/ghBackup/blob/feat-check-repo-size/inst/extdata/examples/example_task_schedule.R).
+
+You might be interested in [cronR package](https://github.com/bnosac/cronR) if you would like to automate R workflow on Linux/Unix. 
+
+
