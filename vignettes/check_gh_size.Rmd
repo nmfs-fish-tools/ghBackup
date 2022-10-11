@@ -11,10 +11,31 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Overview
 
-This package checks github repo size as a means of avoiding errors or oversized repos. The package will flag repos over a standard size. 
+This package checks github repo size as a means of avoiding errors or oversized repos. The package will flag repos over a standard size.
 
 ## Installation
 
-## Using pkg
+Install package using the code below:
+
+```{r setup_pkgs, eval= FALSE}
+#devtools::load_all()
+install.packages("remotes")
+remotes::install_github("Bai-Li-NOAA/ghBackup")
+library(ghBackup)
+```
+
+## Using the `dir_size` function
+
+The function uses the identified path to check the size of a specified directory and will return the total size.
+
+```{r message=FALSE, warning=FALSE, results=FALSE}
+object = ghBackup::dir_size(path=system.file("extdata", package="ghBackup"))
+```
 
 ## Output
+
+This output will show a table including the total directory size in MB and the full path to directory to be sized.
+
+```{r message=FALSE, warning=FALSE, results=TRUE}
+knitr::kable(object)
+```
