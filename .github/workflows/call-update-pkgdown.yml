@@ -6,7 +6,6 @@ on:
 # this workflow runs on pushes to main or master or any time a new tag is pushed
   push:
     branches: [main, master]
-    tags: ['*']
 jobs:
   call-workflow:
     uses: nmfs-fish-tools/ghactions4r/.github/workflows/update-pkgdown.yml@main
