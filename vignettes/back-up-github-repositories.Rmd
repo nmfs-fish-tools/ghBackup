@@ -23,7 +23,7 @@ You can read the help file with
 ?ghBackup::back_up_gh_orgs
 ```
 
-The `back_up_gh_orgs()` function requires a GitHub token, a destination directory, and organization name of the repositories. It then uses the token to clone repositories from the GitHub organization and save the files in the destination directory. The run will download clones of all public and private repositories the token can access. 
+The `back_up_gh_orgs()` function requires a GitHub token, a destination directory, and the organization name of the repositories. It then uses the token to clone repositories from the GitHub organization and save the files in the destination directory. The run will download clones of all public and private repositories the token can access. 
 
 ## Configuration
 
