@@ -2,7 +2,7 @@ ghBackup
 =========
 
 ghBackup is an R package that backs up your GitHub repositories. It uses 
-GitHub personal access token to clone repositories from a GitHub 
+a GitHub personal access token to clone repositories from a GitHub 
 organization and save the files in the destination directory.
 [Simple examples](https://bai-li-noaa.github.io/ghBackup/articles/) on how to back up repositories and upload backup files 
 to a Google Drive folder on a schedule are provided. 
