@@ -14,7 +14,8 @@ Authors@R:
         role = c("aut")
         )
     )
-Description: What the package does (one paragraph).
+Description: Provide functions to allow users to back up repositories in 
+    organizations.
 Imports:
     utils,
     rjson
