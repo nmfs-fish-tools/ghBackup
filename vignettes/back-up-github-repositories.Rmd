@@ -67,7 +67,7 @@ googledrive::drive_put(
 )
 ```
 
-The full R script example can be found here: [inst/extdata/examples/example_back_up_gh.R](https://github.com/Bai-Li-NOAA/ghBackup/blob/feat-check-repo-size/inst/extdata/examples/example_back_up_gh.R).
+The full R script example can be found here: [inst/extdata/examples/example_back_up_gh.R](https://github.com/Bai-Li-NOAA/ghBackup/blob/main/inst/extdata/examples/example_back_up_gh.R).
 
 ## Schedule the run 
 
@@ -86,7 +86,7 @@ task_script <- system.file(
 # Run every 5 mins, starting from within 60 seconds
 taskscheduleR::taskscheduler_create(
   taskname = "ghBackup_5min",
-  rscript = task_script ,
+  rscript = task_script,
   schedule = "MINUTE",
   startdate = format(Sys.Date(), "%m/%d/%Y"),
   starttime = format(Sys.time() + 60, "%H:%M"),
@@ -94,7 +94,7 @@ taskscheduleR::taskscheduler_create(
 )
 ```
 
-The full R script example can be found here: [inst/extdata/examples/example_task_schedule.R](https://github.com/Bai-Li-NOAA/ghBackup/blob/feat-check-repo-size/inst/extdata/examples/example_task_schedule.R).
+The full R script example can be found here: [inst/extdata/examples/example_task_schedule.R](https://github.com/Bai-Li-NOAA/ghBackup/blob/main/inst/extdata/examples/example_task_schedule.R).
 
 You might be interested in [cronR package](https://github.com/bnosac/cronR) if you would like to automate R workflow on Linux/Unix. 
 
