@@ -100,7 +100,8 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Check GH size</h1>
-                        <h4 data-toc-skip class="author">Giselle Schmitz</h4>
+                        <h4 data-toc-skip class="author">Giselle
+Schmitz</h4>
             
             <h4 data-toc-skip class="date">6/15/2022</h4>
       
@@ -114,7 +115,8 @@
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>This package checks github repo size as a means of avoiding errors or oversized repos. The package will flag repos over a standard size.</p>
+<p>This package checks github repo size as a means of avoiding errors or
+oversized repos. The package will flag repos over a standard size.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -129,14 +131,16 @@
 <div class="section level2">
 <h2 id="using-the-dir_size-function">Using the <code>dir_size</code> function<a class="anchor" aria-label="anchor" href="#using-the-dir_size-function"></a>
 </h2>
-<p>The function uses the identified path to check the size of a specified directory and will return the total size.</p>
+<p>The function uses the identified path to check the size of a
+specified directory and will return the total size.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">object</span> <span class="op">=</span> <span class="fu">ghBackup</span><span class="fu">::</span><span class="fu"><a href="../reference/dir_size.html">dir_size</a></span><span class="op">(</span>path<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package<span class="op">=</span><span class="st">"ghBackup"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="output">Output<a class="anchor" aria-label="anchor" href="#output"></a>
 </h2>
-<p>This output will show a table including the total directory size in MB and the full path to directory to be sized.</p>
+<p>This output will show a table including the total directory size in
+MB and the full path to directory to be sized.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span></code></pre></div>
 <table class="table">

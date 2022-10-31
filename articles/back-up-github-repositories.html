@@ -114,13 +114,19 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>This R package helps back up GitHub repositories from an organization using R. To install the package from GitHub:</p>
+<p>This R package helps back up GitHub repositories from an organization
+using R. To install the package from GitHub:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"Bai-Li-NOAA/ghBackup"</span><span class="op">)</span></span></code></pre></div>
 <p>You can read the help file with</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">?</span><span class="fu">ghBackup</span><span class="fu">::</span><span class="va"><a href="../reference/back_up_gh_orgs.html">back_up_gh_orgs</a></span></span></code></pre></div>
-<p>The <code><a href="../reference/back_up_gh_orgs.html">back_up_gh_orgs()</a></code> function requires a GitHub token, a destination directory, and the organization name of the repositories. It then uses the token to clone repositories from the GitHub organization and save the files in the destination directory. The run will download clones of all public and private repositories the token can access.</p>
+<p>The <code><a href="../reference/back_up_gh_orgs.html">back_up_gh_orgs()</a></code> function requires a GitHub token,
+a destination directory, and the organization name of the repositories.
+It then uses the token to clone repositories from the GitHub
+organization and save the files in the destination directory. The run
+will download clones of all public and private repositories the token
+can access.</p>
 </div>
 <div class="section level2">
 <h2 id="configuration">Configuration<a class="anchor" aria-label="anchor" href="#configuration"></a>
@@ -128,29 +134,52 @@
 <div class="section level3">
 <h3 id="create-a-token">Create a token<a class="anchor" aria-label="anchor" href="#create-a-token"></a>
 </h3>
-<p>A new personal GitHub token can be created from the GitHub settings -&gt; Developer settings -&gt; Personal access tokens tab. More instructions can be found on the GitHub <a href="https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token" class="external-link">“creating a personal access token”</a> website.</p>
-<p>Once you have a token, you can use it with the <code>gh_token</code> argument in the <code><a href="../reference/back_up_gh_orgs.html">back_up_gh_orgs()</a></code> function. There are two options to set up <code>gh_token</code>.</p>
+<p>A new personal GitHub token can be created from the GitHub settings
+-&gt; Developer settings -&gt; Personal access tokens tab. More
+instructions can be found on the GitHub <a href="https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token" class="external-link">“creating
+a personal access token”</a> website.</p>
+<p>Once you have a token, you can use it with the <code>gh_token</code>
+argument in the <code><a href="../reference/back_up_gh_orgs.html">back_up_gh_orgs()</a></code> function. There are two
+options to set up <code>gh_token</code>.</p>
 <ul>
-<li><p>Option 1: simply provide token in an R script and do not share the token with others. For example, <code>gh_token = "abcdefghijklmnopqrstuvwxyz01234567890123"</code></p></li>
-<li><p>Option 2 (<strong>Recommended</strong>): Use R package <code>gitcreds</code> to manage GitHub credentials without printing out the token in an R script. <code>gitcreds::gitcreds_set()</code> adds Git credentials in the credential stores and <code>gh::gh_token()</code> can be used to return the local user’s token. Please see <a href="https://github.com/r-lib/gitcreds" class="external-link">gitcreds website</a> and <a href="https://gh.r-lib.org/reference/gh_token.html" class="external-link">gh website</a> for more details. The token will not be shared when sharing the R script.</p></li>
+<li><p>Option 1: simply provide token in an R script and do not share
+the token with others. For example,
+<code>gh_token = "abcdefghijklmnopqrstuvwxyz01234567890123"</code></p></li>
+<li><p>Option 2 (<strong>Recommended</strong>): Use R package
+<code>gitcreds</code> to manage GitHub credentials without printing out
+the token in an R script. <code>gitcreds::gitcreds_set()</code> adds Git
+credentials in the credential stores and <code>gh::gh_token()</code> can
+be used to return the local user’s token. Please see <a href="https://github.com/r-lib/gitcreds" class="external-link">gitcreds website</a> and <a href="https://gh.r-lib.org/reference/gh_token.html" class="external-link">gh website</a> for
+more details. The token will not be shared when sharing the R
+script.</p></li>
 </ul>
 </div>
 <div class="section level3">
 <h3 id="back-up-repositories">Back up repositories<a class="anchor" aria-label="anchor" href="#back-up-repositories"></a>
 </h3>
-<p>To back up all repositories from, for example, <code>nmfs-fish-tools</code> and <code>nmfs-general-modeling-tools</code> to <code>C:/Users/ghbackup/</code> using <code>gh::gh_token()</code>, you can use the following R code in an R script:</p>
+<p>To back up all repositories from, for example,
+<code>nmfs-fish-tools</code> and
+<code>nmfs-general-modeling-tools</code> to
+<code>C:/Users/ghbackup/</code> using <code>gh::gh_token()</code>, you
+can use the following R code in an R script:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/back_up_gh_orgs.html">back_up_gh_orgs</a></span><span class="op">(</span></span>
 <span> gh_token <span class="op">=</span> <span class="fu">gh</span><span class="fu">::</span><span class="fu">gh_token</span><span class="op">(</span><span class="op">)</span>,</span>
 <span> backup_path <span class="op">=</span> <span class="st">"C:/Users/ghbackup/"</span>,</span>
 <span> orgs_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"nmfs-fish-tools"</span>, <span class="st">"nmfs-general-modeling-tools"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>Clones of all repositories will be saved in the <code>C:/Users/ghbackup/</code> directory and a zip archives of clones of all repositories will be created under parent directory <code>C:/Users/</code>.</p>
+<p>Clones of all repositories will be saved in the
+<code>C:/Users/ghbackup/</code> directory and a zip archives of clones
+of all repositories will be created under parent directory
+<code>C:/Users/</code>.</p>
 </div>
 <div class="section level3">
 <h3 id="upload-the-zip-file-to-a-google-drive-folder">Upload the zip file to a Google Drive folder<a class="anchor" aria-label="anchor" href="#upload-the-zip-file-to-a-google-drive-folder"></a>
 </h3>
-<p>Thanks <span class="citation">@k-doering-NOAA</span> for providing the solution. This approach uses an auto auth setting so no interaction is needed. See gargle’s <a href="https://gargle.r-lib.org/articles/non-interactive-auth.html" class="external-link">“Non-interactive auth”</a> vignette for more details:</p>
+<p>Thanks <span class="citation">@k-doering-NOAA</span> for providing
+the solution. This approach uses an auto auth setting so no interaction
+is needed. See gargle’s <a href="https://gargle.r-lib.org/articles/non-interactive-auth.html" class="external-link">“Non-interactive
+auth”</a> vignette for more details:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>gargle_oauth_email <span class="op">=</span> <span class="st">"*@noaa.gov"</span><span class="op">)</span></span>
 <span></span>
@@ -161,13 +190,15 @@
 <span>  path <span class="op">=</span> <span class="fu">googledrive</span><span class="fu">::</span><span class="fu">as_id</span><span class="op">(</span><span class="st">"https://drive.google.com/drive/folders/1vju2qQ0dPh49Ay7VGaWv6CvGqMZsZKPc"</span><span class="op">)</span>,</span>
 <span>  name <span class="op">=</span> <span class="va">zip_name</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>The full R script example can be found here: <a href="https://github.com/Bai-Li-NOAA/ghBackup/blob/feat-check-repo-size/inst/extdata/examples/example_back_up_gh.R" class="external-link">inst/extdata/examples/example_back_up_gh.R</a>.</p>
+<p>The full R script example can be found here: <a href="https://github.com/Bai-Li-NOAA/ghBackup/blob/main/inst/extdata/examples/example_back_up_gh.R" class="external-link">inst/extdata/examples/example_back_up_gh.R</a>.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="schedule-the-run">Schedule the run<a class="anchor" aria-label="anchor" href="#schedule-the-run"></a>
 </h2>
-<p>You can schedule the R script/workflow on Windows using the Windows task scheduler. To add a task in an R script, you need to install <a href="https://cran.r-project.org/web/packages/taskscheduleR/vignettes/taskscheduleR.html" class="external-link"><code>taskscheduleR</code></a> package and run the example code below:</p>
+<p>You can schedule the R script/workflow on Windows using the Windows
+task scheduler. To add a task in an R script, you need to install <a href="https://cran.r-project.org/web/packages/taskscheduleR/vignettes/taskscheduleR.html" class="external-link"><code>taskscheduleR</code></a>
+package and run the example code below:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"taskscheduleR"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bnosac/taskscheduleR" class="external-link">taskscheduleR</a></span><span class="op">)</span></span>
@@ -181,14 +212,15 @@
 <span><span class="co"># Run every 5 mins, starting from within 60 seconds</span></span>
 <span><span class="fu">taskscheduleR</span><span class="fu">::</span><span class="fu">taskscheduler_create</span><span class="op">(</span></span>
 <span>  taskname <span class="op">=</span> <span class="st">"ghBackup_5min"</span>,</span>
-<span>  rscript <span class="op">=</span> <span class="va">task_script</span> ,</span>
+<span>  rscript <span class="op">=</span> <span class="va">task_script</span>,</span>
 <span>  schedule <span class="op">=</span> <span class="st">"MINUTE"</span>,</span>
 <span>  startdate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"%m/%d/%Y"</span><span class="op">)</span>,</span>
 <span>  starttime <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fl">60</span>, <span class="st">"%H:%M"</span><span class="op">)</span>,</span>
 <span>  modifier <span class="op">=</span> <span class="fl">5</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>The full R script example can be found here: <a href="https://github.com/Bai-Li-NOAA/ghBackup/blob/feat-check-repo-size/inst/extdata/examples/example_task_schedule.R" class="external-link">inst/extdata/examples/example_task_schedule.R</a>.</p>
-<p>You might be interested in <a href="https://github.com/bnosac/cronR" class="external-link">cronR package</a> if you would like to automate R workflow on Linux/Unix.</p>
+<p>The full R script example can be found here: <a href="https://github.com/Bai-Li-NOAA/ghBackup/blob/main/inst/extdata/examples/example_task_schedule.R" class="external-link">inst/extdata/examples/example_task_schedule.R</a>.</p>
+<p>You might be interested in <a href="https://github.com/bnosac/cronR" class="external-link">cronR package</a> if you would
+like to automate R workflow on Linux/Unix.</p>
 </div>
   </div>
 
